@@ -1,0 +1,9 @@
+<input [(ngModel)]=vagType (keyup)="onestring(vagType)">
+<button (click)="isInTheList(vagType)">sbmite</button>
+<p *ngIf="itIsMoreThan2">please enter only 1 char</p>
+<p *ngIf="lestThene1">please at list 1 char</p>
+<div *ngIf="!doNotDisplay">
+<ul *ngFor="let a of getListArray">
+<li>{{a}}</li>
+</ul>
+</div>

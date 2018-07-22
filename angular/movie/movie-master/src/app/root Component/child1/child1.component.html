@@ -1,0 +1,10 @@
+<div id="head">
+  <h1>movie list</h1>
+</div>
+<div class="list-type1">
+  <ol>
+    <li *ngFor="let obj of jMovie" (click)="onmovieSelected(obj.id)">
+      <a> {{obj.movie_name}}</a>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,14 @@
+table {
+    width: 30%;
+}
+div{
+    margin-left: 41.5%;
+}
+td {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+

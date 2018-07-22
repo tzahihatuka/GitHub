@@ -1,0 +1,13 @@
+
+<div id="head" >   <img id="Logo" src="http://isrtv.net/wp-content/uploads/2015/02/cropped-Best-Top-15-Sites-for-Streaming-Movies-Online-for-Free-2014.jpeg">
+
+ 
+  
+  <nav class="navbar navbar-default navbar-top" id="menu">
+    <div class="container">
+      <ul  >
+        <li *ngFor="let cat of categorylist" role="presentation" class="dropdown"><a (click)="categoryChoosing(cat.apiLink)">{{cat.category}}</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

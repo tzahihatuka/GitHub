@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        div {
+            margin-top: 100px;
+            text-align: right;
+        }
+
+        input {
+            margin-top: 30px;
+        }
+
+        ol {
+            float: right;
+            direction: rtl;
+        }
+
+        .text {
+            direction: rtl;
+        }
+    </style>
+    <script>
+        class add {
+            constructor() {
+                this.addu = [];
+            }
+        }
+
+        onload = () => {
+
+
+            let usersdetils = localStorage.getItem("NewUser");
+            usersdetils = JSON.parse(usersdetils);
+            for(let v of usersdetils) {
+                let doc = document.getElementById("textarea").appendChild(document.createElement('ol'));
+                for (let a in v.addu) {
+                    let addNewUser = document.getElementsByClassName("text");
+                    n = doc.appendChild(document.createElement('li'));
+                    n.innerHTML = JSON.stringify(addNewUser[a].previousSibling.data.replace(/\s/g, ' ') + v.addu[a]);
+                    n.style.color = v.addu[3];
+                }
+            }
+        }
+
+        let onageval = () =>{
+            let age = document.getElementById("age").value;
+            if (age < 0 || age > 120) {
+                alert("illegal age input");
+            }
+                
+        }
+
+        let addTolocalStorage = () => {
+            let corentuser = new add();
+            let addNewUser = document.getElementsByClassName("addNewUser");
+            if (addNewUser[0].value && addNewUser[1].value && addNewUser[2].value) {
+                for(let userDetils of addNewUser) {
+                    corentuser.addu.push(userDetils.value);
+                }
+                let usersdetils = localStorage.getItem("NewUser");
+                usersdetils = usersdetils ? JSON.parse(usersdetils) : [];
+
+                usersdetils.push(corentuser);
+
+                localStorage.setItem("NewUser", JSON.stringify(usersdetils));
+            }
+
+            else { alert("please enter the detils"); }
+           
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <form>
+            <input type="text" class="addNewUser" id="username" />
+           : שם :<br class="text">
+            <input type="number" class="addNewUser" id="age" onchange="onageval()" />
+           : גיל :<br class="text">
+            <input type="date" class="addNewUser" id="birthday" />
+           : תאריך-לידה :<br class="text">
+            <input type="color" class="addNewUser" id="color" />
+           : צבע-מעודף :<br class="text">
+            <input type="submit" value="Save" onclick="addTolocalStorage()">
+        </form>
+    </div>
+
+
+    <div id="textarea"></div>
+</body>
+</html>

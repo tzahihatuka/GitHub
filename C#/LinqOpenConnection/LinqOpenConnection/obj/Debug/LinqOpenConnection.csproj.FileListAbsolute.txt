@@ -1,0 +1,6 @@
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\bin\Debug\LinqOpenConnection.exe.config
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\bin\Debug\LinqOpenConnection.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\bin\Debug\LinqOpenConnection.pdb
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\obj\Debug\LinqOpenConnection.csprojResolveAssemblyReference.cache
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\obj\Debug\LinqOpenConnection.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\LinqOpenConnection\LinqOpenConnection\obj\Debug\LinqOpenConnection.pdb
