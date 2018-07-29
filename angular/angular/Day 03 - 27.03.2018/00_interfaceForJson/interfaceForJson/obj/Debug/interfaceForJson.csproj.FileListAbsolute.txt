@@ -1,6 +1,0 @@
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\obj\Debug\interfaceForJson.csprojResolveAssemblyReference.cache
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\bin\interfaceForJson.dll.config
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\bin\interfaceForJson.dll
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\bin\interfaceForJson.pdb
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\obj\Debug\interfaceForJson.dll
-C:\Users\jbt\Desktop\interfaceForJson\interfaceForJson\obj\Debug\interfaceForJson.pdb

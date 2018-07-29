@@ -1,6 +1,0 @@
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\obj\Debug\X O game.csprojResolveAssemblyReference.cache
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\bin\X O game.dll.config
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\bin\X O game.dll
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\bin\X O game.pdb
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\obj\Debug\X O game.dll
-c:\users\tzahih\documents\visual studio 2015\Projects\X O game\X O game\obj\Debug\X O game.pdb
