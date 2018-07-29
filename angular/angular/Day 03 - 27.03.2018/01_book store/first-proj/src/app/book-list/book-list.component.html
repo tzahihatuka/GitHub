@@ -1,0 +1,50 @@
+
+
+
+
+
+<div class="container">
+        <div *ngIf="selectedBook" class="chosen-book" >
+                <h1>{{selectedBook.volumeInfo.title}}</h1>
+            
+                <p> authors: {{selectedBook.volumeInfo.authors}}</p>
+                <p> publishedDate: {{selectedBook.volumeInfo.publishedDate}}</p>
+                <p> description: {{selectedBook.volumeInfo.description}}</p>
+                <p> pageCount: {{selectedBook.volumeInfo.pageCount}}</p>
+                <p> language {{selectedBook.volumeInfo.language}}</p>
+                <p> subtitle {{selectedBook.volumeInfo.subtitle}}</p>
+            
+                <img [src]="selectedBook.volumeInfo.imageLinks.thumbnail"/>
+            </div>
+    <h2 id="booksList">Our books:</h2>
+    <div class="row">
+
+
+        <div class="col-md-3 book-container"  *ngFor="let book of localBookData.items">
+            <div class="thumbnail">
+
+                <div class="caption">
+
+                    <h2>{{book.volumeInfo.title}}</h2>
+                    <hr/>
+                    <img [src]="book.volumeInfo.imageLinks.thumbnail" [title]="book.volumeInfo.title"/>
+                    <p>language: {{book.volumeInfo.language}}</p>
+                    <p>authors:
+                        <span *ngIf="book.volumeInfo.authors">{{book.volumeInfo.authors[0]}}</span>
+                        <span *ngIf="!book.volumeInfo.authors">unknown</span>
+                    </p>
+                    <p>published date: {{ (book.volumeInfo.publishedDate)? book.volumeInfo.publishedDate : 'unknown' }}
+                    </p>
+
+                    <p>
+                        <button class="btn btn-primary" (click)="setSelectedBook(book.id)">Show details</button>
+                        <button class="btn btn-default">Add to cart</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,5 @@
+c:\Users\tzahi\documents\visual studio 2017\Projects\DAL\BOL\bin\Debug\BOL.dll
+c:\Users\tzahi\documents\visual studio 2017\Projects\DAL\BOL\bin\Debug\BOL.pdb
+c:\Users\tzahi\documents\visual studio 2017\Projects\DAL\BOL\obj\Debug\BOL.dll
+c:\Users\tzahi\documents\visual studio 2017\Projects\DAL\BOL\obj\Debug\BOL.pdb
+c:\Users\tzahi\documents\visual studio 2017\Projects\DAL\BOL\obj\Debug\BOL.csprojResolveAssemblyReference.cache

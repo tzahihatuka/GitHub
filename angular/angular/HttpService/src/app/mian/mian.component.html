@@ -1,0 +1,6 @@
+<div class="w3-content w3-section" *ngFor="let a of myUsers[0]">
+  <p>first name: {{a.first_name}}</p>
+  <p>last name: {{a.last_name}}</p>
+  <p>full name: {{a.first_name}}&nbsp;{{a.last_name}}</p>
+  <img [src]="a.avatar"/>
+</div>

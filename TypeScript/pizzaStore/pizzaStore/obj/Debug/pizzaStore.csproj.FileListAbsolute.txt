@@ -1,0 +1,12 @@
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\bin\pizzaStore.dll.config
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\bin\pizzaStore.dll
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\bin\pizzaStore.pdb
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\obj\Debug\pizzaStore.dll
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\obj\Debug\pizzaStore.pdb
+c:\users\tzahih\documents\visual studio 2015\Projects\pizzaStore\pizzaStore\obj\Debug\pizzaStore.csprojResolveAssemblyReference.cache
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\bin\pizzaStore.dll.config
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\bin\pizzaStore.dll
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\bin\pizzaStore.pdb
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\obj\Debug\pizzaStore.csprojResolveAssemblyReference.cache
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\obj\Debug\pizzaStore.dll
+D:\GitHub\pizzaStore-master\pizzaStore-master\pizzaStore\obj\Debug\pizzaStore.pdb

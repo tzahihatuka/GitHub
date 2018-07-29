@@ -1,0 +1,6 @@
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\bin\Debug\hotel.exe.config
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\bin\Debug\hotel.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\bin\Debug\hotel.pdb
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\obj\Debug\hotel.csprojResolveAssemblyReference.cache
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\obj\Debug\hotel.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\hotel\hotel\obj\Debug\hotel.pdb

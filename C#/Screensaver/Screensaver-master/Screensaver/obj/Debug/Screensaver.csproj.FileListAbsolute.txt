@@ -1,0 +1,12 @@
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\bin\Debug\Screensaver.exe.config
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\bin\Debug\Screensaver.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\bin\Debug\Screensaver.pdb
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\obj\Debug\Screensaver.csprojResolveAssemblyReference.cache
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\obj\Debug\Screensaver.exe
+c:\users\tzahi\documents\visual studio 2017\Projects\Screensaver\Screensaver\obj\Debug\Screensaver.pdb
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\bin\Debug\Screensaver.exe.config
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\bin\Debug\Screensaver.exe
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\bin\Debug\Screensaver.pdb
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\obj\Debug\Screensaver.csprojResolveAssemblyReference.cache
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\obj\Debug\Screensaver.exe
+C:\Users\tzahi\Desktop\Screensaver-master\Screensaver-master\Screensaver\obj\Debug\Screensaver.pdb

@@ -1,0 +1,13 @@
+<div>
+<table>
+    <tr>
+        <th>Diameter</th>
+        <th>Slices</th> 
+        <th>Toppings</th>
+        <th>Price</th>
+      </tr>
+  <tr *ngFor="let obj of outerAPizzaArr">
+    <td *ngFor="let j of obj">{{j}}</td>
+  </tr>
+</table>
+</div>

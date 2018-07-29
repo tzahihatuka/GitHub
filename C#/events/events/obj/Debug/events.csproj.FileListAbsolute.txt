@@ -1,0 +1,6 @@
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\bin\Debug\events.exe.config
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\bin\Debug\events.exe
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\bin\Debug\events.pdb
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\obj\Debug\events.csprojResolveAssemblyReference.cache
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\obj\Debug\events.exe
+C:\Users\tzahi\Documents\Visual Studio 2017\Projects\events\events\obj\Debug\events.pdb

@@ -1,0 +1,2 @@
+{ }
+//# sourceMappingURL=ischemafun.js.map
