@@ -25,15 +25,11 @@ namespace FindYourFiles
         /// <param name="path"></param>
         private static void ShowFoundPathAndFile(string path)
         {
-            if (path.Length > 248)
-            {
+            if (path.Length>248) {
                 Console.WriteLine(path.Substring(0, 248));
                 Console.WriteLine(path.Substring(248));
             }
-            else
-            {
-                Console.WriteLine(path);
-            }
+            Console.WriteLine(path);
         }
 
 
