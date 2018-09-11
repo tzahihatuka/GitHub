@@ -17,13 +17,13 @@ export class EditOrdersComponent {
  
   constructor(private myCarOrders:CarOrderService) {
    }
-   search(){
-    this.myCarOrders.getUserOrdersByIdNamber(this.model.IdNamber);
+   search(IdNamber){
+    this.myCarOrders.getUserOrdersByIdNamber(IdNamber);
     setTimeout(() => {
       this.orderlist=this.myCarOrders.orderlist;
       console.log(this.myCarOrders.orderlist)
       this.model.UserName=this.orderlist[0].UserName
-    },30);
+    },300);
    }
    getdetels:any={};
   onSubmit(order)
@@ -53,7 +53,7 @@ export class EditOrdersComponent {
     if(!this.wrongDateInput&&!this.wrongmindate){
     switch (order){
       case "Add":this.add();break;
-      case "Update":console.log("Update");break;
+      case "Update": this.Update();break;
       case "Delete":console.log("Delete");break;
       default:break;
     }
@@ -65,10 +65,23 @@ export class EditOrdersComponent {
     this.wrongCarinput=false;
     this.model.StartDate=this.date.Start;
     this.model.ReturnDate=this.date.Return;
-    console.log(this.myCarOrders.newOrder);
     this.myCarOrders.sendNewOrder(this.model);
 
    }
+   
+   if( this.model.VehicleNumber==0){
+    this.wrongCarinput=true; 
+   }
+
+ }
+ Update(){
+  if( this.model.VehicleNumber!=0){
+    this.wrongCarinput=false;
+    this.model.StartDate=this.date.Start;
+    this.model.ReturnDate=this.date.Return;
+    this.myCarOrders.updateanorder(this.model);
+   }
+   
    if( this.model.VehicleNumber==0){
     this.wrongCarinput=true; 
    }
