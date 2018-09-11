@@ -1,0 +1,14 @@
+
+<span (click)="toggle()">
+    <img src="/assets/images.jpg" style="width: 3.2rem; cursor: pointer;"/>
+  </span>
+  <div *ngIf="showcalender">
+      <ngb-datepicker  #d="ngbDatepicker"  (select)="onDateSelection($event)"  [displayMonths]="2" [dayTemplate]="t">
+        </ngb-datepicker>
+        <pre>From: {{ fromDate | json }} </pre>
+        <pre>To: {{ toDate | json }} </pre>
+  </div>
+
+
+
+

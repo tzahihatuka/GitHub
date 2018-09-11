@@ -1,0 +1,102 @@
+
+
+<section>
+    <div class="container">
+        <form name="form" (ngSubmit)="g.form.valid" #g="ngForm" method="post" class="form" role="form">
+        <div class="row">
+              <div class="col-md-12">
+                  <div id="custom-search-input">
+                      <div class="input-group col-md-6">
+                          <div class="form-group ">
+                                        <input type="text" class="form-control"  pattern="[0-9]*" placeholder="Enter Id Namber" name="IdNamber"[(ngModel)]="model.IdNamber" #IdNamber="ngModel" [ngClass]="{ 'is-invalid': f.submitted && IdNamber.invalid }" required minlength="5" maxlength="9"/>
+                                      </div>
+                                      </div>
+                                      
+                                      <div class="col-md-6">
+                                          <div class="form-group ">
+                                              <button  [disabled]="!g.valid" class="btn btn-lg btn-primary btn-block" (click)="search()">Show Orders</button>
+                                             
+                                              </div>
+                                      </div>
+                                    </div>
+                                </div>
+                          </div>
+                        </form>
+                        
+            
+                        <table  class="table">
+                            <thead>
+                            <tr>
+                                <th>Id Namber</th>
+                                <th>Start Date</th>
+                                <th>Return Date</th>
+                                <th>Vehicle Number</th>
+                                <th>Actual Return Date</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orderlist" (click)="setItem(order)">
+                                    <td>{{model.IdNamber}}</td>
+                                    <td>{{order.StartDate|date:'M/d/yy'}}</td>
+                                    <td>{{order.ReturnDate|date:'M/d/yy'}}</td>
+                                    <td>{{order.VehicleNumber}}</td>
+                                    <td>{{order.ActualReturnDate}}</td>
+                                </tr>
+                              </tbody>
+                             
+                        </table>
+                        <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" method="post" class="form" role="form">
+                <div class="row">
+                  
+                    <div class="col-md-2">
+                            <div class="form-group ">
+                                          <input type="text" class="form-control"  placeholder="Enter Id Namber" name="IdNamber"[(ngModel)]="model.IdNamber" #IdNamber="ngModel" readonly/>
+                                </div>
+                        </div>
+                        
+                  
+                        <div class="col-md-2">
+                            <div class="form-group ">
+                                    <input type="date" name="Start" [(ngModel)]="model.Start" #Start="ngModel" required >
+                                  </div>
+                                </div>
+                                
+                        <div class="col-md-2">
+                            <div class="form-group ">
+                                    <input type="date" name="End" [(ngModel)]="model.End"  #End="ngModel"required >
+                                  </div>
+                                </div>
+                                    <label *ngIf="wrongDateInput" class="alert alert-danger">the start date can't be before the end date</label>
+                                    <label *ngIf="wrongmindate" class="alert alert-danger">You can not select a date before the current date</label>
+
+                                    <div class="col-md-2">
+                                        <div class="form-group ">
+                                                      <input type="text" class="form-control"  pattern="[0-9]*" placeholder="Vehicles Namber" name="vehicale"[(ngModel)]="model.vehicale" #vehicale="ngModel" [ngClass]="{ 'is-invalid': f.submitted && vehicale.invalid }" />
+                                            </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group ">
+                                                <input type="date" name="ActualReturnDate" [(ngModel)]="model.ActualReturnDate"  #ActualReturnDate="ngModel" >
+                                              </div>
+                                            </div>
+  
+                  <div class="col-md-3">
+                        <div class="form-group ">
+                            <button  [disabled]="!f.valid"  (click)="onSubmit()" class="btn btn-lg btn-primary btn-block">Add</button>
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group ">
+                            <button  [disabled]="!f.valid"  (click)="onSubmit()" class="btn btn-lg btn-primary btn-block">Delete</button>
+                            </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group ">
+                            <button  class="btn btn-lg btn-primary btn-block" [disabled]="!f.valid"  (click)="onSubmit()">Update</button>
+                            </div>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          
+</section>
