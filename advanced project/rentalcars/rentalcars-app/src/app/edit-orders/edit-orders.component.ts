@@ -13,6 +13,8 @@ export class EditOrdersComponent {
   wrongmindate:boolean=false;
   wrongCarinput:boolean=false;
   orderlist:any;
+  date:any={};
+ 
   constructor(private myCarOrders:CarOrderService) {
    }
    search(){
@@ -30,7 +32,7 @@ export class EditOrdersComponent {
     this.model.VehicleNumber=0;
   }
    let mindate:Date=new Date();
-   let StartDate:Date=new Date(this.model.Start);
+   let StartDate:Date=new Date(this.date.Start);
    mindate=new Date(mindate.getFullYear(),mindate.getMonth(),mindate.getDate());
    this.wrongDateInput=false;
     this.wrongmindate=false;
@@ -40,7 +42,7 @@ export class EditOrdersComponent {
     else{
       this.wrongmindate=false;
     }
-    if(this.model.Start<this.model.Return)
+    if(this.date.Start<this.date.Return)
     {
      this.wrongDateInput=false;
     }
@@ -57,17 +59,22 @@ export class EditOrdersComponent {
     }
     } 
     }
-    
+
  add(){
    if( this.model.VehicleNumber!=0){
     this.wrongCarinput=false;
-    this.myCarOrders.sendNewOrder(this.model); 
+    this.model.StartDate=this.date.Start;
+    this.model.ReturnDate=this.date.Return;
+    console.log(this.myCarOrders.newOrder);
+    this.myCarOrders.sendNewOrder(this.model);
+
    }
    if( this.model.VehicleNumber==0){
     this.wrongCarinput=true; 
    }
 
  }
+
     setItem(str){
       this.model.StartDate=str.StartDate;
       this.model.ReturnDate=str.ReturnDate;

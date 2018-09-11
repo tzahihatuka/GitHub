@@ -12,16 +12,16 @@ namespace _02_BLL
         {
             using (RentalcarsEntities1 ef = new RentalcarsEntities1())
             {
-                Order dbOrder = ef.Orders.FirstOrDefault(u => u.VehiclesID == order.VehiclesID && u.ActualReturnDate == null &&
-                u.ReturnDate > order.StartDate && u.ReturnDate < order.StartDate);
-                if (dbOrder == null)
+                bool a = true;
+               List<Order>  dbOrder = ef.Orders.Where(u => u.VehiclesID == order.VehiclesID && u.ActualReturnDate == null).ToList();
+                foreach (var item in dbOrder)
                 {
-                    return true;
+                    if (item.ReturnDate >= order.StartDate && item.StartDate >= order.StartDate|| item.ReturnDate > order.StartDate && item.ReturnDate < order.StartDate)
+                    {
+                        a= false;
+                    }
                 }
-                else
-                {
-                    return false;
-                }
+                return a;
             }
 
 

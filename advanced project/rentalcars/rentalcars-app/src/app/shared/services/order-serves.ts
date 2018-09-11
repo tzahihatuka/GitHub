@@ -91,6 +91,7 @@ inBetween(date1, date2 ) {
             res => {
               if(res!=null)
               this.newOrder=false;
+              else{this.newOrder=true;}
             },
             err => {
               this.newOrder=true;
