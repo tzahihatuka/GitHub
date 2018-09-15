@@ -37,12 +37,15 @@ namespace _03_UIL.Controllers
             var baseUrl = Request.RequestUri.GetLeftPart(UriPartial.Authority);
 
             BOLCarInventory value = RentCarsInVehicleInventory.GetCarFrom_db(carNumber);
+            if (value != null)
+            {
+                value.VehiclePic = baseUrl + @"/image/" + value.VehiclePic;
 
-            value.VehiclePic = baseUrl + @"/image/" + value.VehiclePic;
+                CarInventoryModel carList = GetCarInventoryFilter.ReturnCarInventory(value);
+                return Ok(carList);
+            }
+            return null;
             
-            CarInventoryModel carList = GetCarInventoryFilter.ReturnCarInventory(value);
-
-            return Ok(carList);
         }
 
 
@@ -87,17 +90,17 @@ namespace _03_UIL.Controllers
 
         // POST: api/CarInventory
         [AuthenticationFilter]
-        [Authorize(Roles = "admin,worker")]
+        [Authorize(Roles = "admin")]
         public IHttpActionResult Post([FromBody]CarInventoryModel newCarType)
         {
             BOLCarInventory RetrievedCarInventory = GetCarInventoryFilter.RetrieveCarInventory(newCarType);
-            RentCarsInVehicleInventory.AddCarTo_db(RetrievedCarInventory);
-            return Ok();
+            BOLCarInventory add= RentCarsInVehicleInventory.AddCarTo_db(RetrievedCarInventory);
+            return Ok(add);
         }
 
-        // PUT: api/CarInventory/5
+        // PUT: api/CarInventory
         [AuthenticationFilter]
-        [Authorize(Roles = "admin,worker")]
+        [Authorize(Roles = "admin")]
         public IHttpActionResult Put([FromBody] List<CarInventoryModel> Car)
         {
             BOLCarInventory RetrievedCarInventory0 = GetCarInventoryFilter.RetrieveCarInventory(Car[0]);
@@ -109,10 +112,10 @@ namespace _03_UIL.Controllers
         // DELETE: api/CarInventory/5
         [AuthenticationFilter]
         [Authorize(Roles = "admin")]
-        public IHttpActionResult Delete(BOLCarInventory carType)
+        public IHttpActionResult Delete(int CarNumber )
         {
-            RentCarsInVehicleInventory.deleteFrom_db(carType);
-            return Ok();
+            int a = RentCarsInVehicleInventory.deleteFrom_db(CarNumber);
+            return Ok(a);
         }
     }
 }

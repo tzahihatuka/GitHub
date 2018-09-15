@@ -24,11 +24,17 @@ export class ReturnCarComponent implements OnInit {
     this.myCarOrders.returnedCar=str;
     
 }
+emptyOrderList=false;
   onSubmit(){
    this.myCarOrders.getUserOrdersByIdNamber(this.model.IdNamber);
    
    setTimeout(() => {
     this.orderlist=this.myCarOrders.orderlist;
+    if(this.orderlist==null){
+      this.emptyOrderList=true;
+    }
+     
+    
   },100);
   }
   ngOnInit() {

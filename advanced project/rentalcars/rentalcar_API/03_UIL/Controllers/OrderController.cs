@@ -18,12 +18,7 @@ namespace _03_UIL.Controllers
     {
         // GET: api/Order
 
-        [Authorize(Roles = "admin,worker")]
-        public IHttpActionResult Get()
-        {
-            List<OrderModel> value = GetOrdersFilter.GetListOrders();
-            return Ok(value);
-        }
+       
         [Authorize(Roles = "admin,worker,castomer")]
         [Route("api/GetUserOrdesrByUserName")]
         [HttpGet]
@@ -62,12 +57,10 @@ namespace _03_UIL.Controllers
         // PUT: api/CarType/5
 
         [Authorize(Roles = "admin")]
-        public IHttpActionResult Put([FromBody] List<OrderModel> order)
+        public IHttpActionResult Put([FromBody] OrderModel order)
         {
-            BOLOrder RetrievedOrder0 = GetOrdersFilter.RetrieveOrder(order[0]);
-            BOLOrder RetrievedOrder1 = GetOrdersFilter.RetrieveOrder(order[1]);
-            RentOrder.UpDataTo_db(RetrievedOrder0, RetrievedOrder1);
-            return Ok();
+            BOLOrder RetrievedOrder = GetOrdersFilter.updateOrder(order);
+            return Ok(RetrievedOrder);
         }
 
         [Authorize(Roles = "admin,worker")]
@@ -86,10 +79,10 @@ namespace _03_UIL.Controllers
         // DELETE: api/CarType/5
 
         [Authorize(Roles = "admin")]
-        public IHttpActionResult Delete(OrderModel order)
+        public IHttpActionResult Delete(string username, int carNumber,DateTime start)
         {
-            BOLOrder RetrievedOrder = GetOrdersFilter.RetrieveOrder(order);
-            RentOrder.deleteFrom_db(RetrievedOrder);
+            var RetrievedOrder = GetOrdersFilter.RetrieveOrder(username, carNumber, start);
+            RentOrder.deleteFrom_db(RetrievedOrder.UserID, RetrievedOrder.VehiclesID, RetrievedOrder.StartDate);
             return Ok();
         }
     }

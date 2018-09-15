@@ -133,7 +133,7 @@ namespace _02_BLL
             return null;
         }
 
-        public static void AddCarTo_db(BOLCarInventory car)
+        public static BOLCarInventory AddCarTo_db(BOLCarInventory car)
         {
             try
             {
@@ -152,6 +152,7 @@ namespace _02_BLL
                             BranchesID = car.BranchesID
                         });
                         ef.SaveChanges();
+                        return car;
                     }
                     else
                     {
@@ -160,16 +161,16 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch 
             {
-                throw new Exception(EX.ToString());
+                return null;
             }
         }
 
 
 
 
-        public static void UpDataTo_db(BOLCarInventory oldCar, BOLCarInventory newCar)
+        public static BOLCarInventory UpDataTo_db(BOLCarInventory oldCar, BOLCarInventory newCar)
         {
             try
             {
@@ -186,6 +187,7 @@ namespace _02_BLL
                         dbUser.BranchesID = newCar.BranchesID;
 
                         ef.SaveChanges();
+                        return newCar;
                     }
 
                     else
@@ -194,25 +196,26 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch 
             {
-                throw new Exception(EX.ToString());
+                return null;
             }
         }
 
 
-        public static void deleteFrom_db(BOLCarInventory carType)
+        public static int deleteFrom_db(int VehicleNumber)
         {
             try
             {
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    VehicleInventory dbUser = ef.VehicleInventories.FirstOrDefault(u => u.VehicleNumber == carType.VehicleNumber);
+                    VehicleInventory dbUser = ef.VehicleInventories.FirstOrDefault(u => u.VehicleNumber == VehicleNumber);
 
                     if (dbUser != null)
                     {
                         ef.VehicleInventories.Remove(dbUser);
                         ef.SaveChanges();
+                        return VehicleNumber;
                     }
                     else
                     {
@@ -221,9 +224,9 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch (Exception e)
             {
-                throw new Exception(EX.ToString());
+                return 0;
             }
         }
 
@@ -247,9 +250,9 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch 
             {
-                throw new Exception(EX.ToString());
+                return 0;
             }
 
         }

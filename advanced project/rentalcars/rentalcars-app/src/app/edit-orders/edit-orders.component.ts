@@ -14,18 +14,26 @@ export class EditOrdersComponent {
   wrongCarinput:boolean=false;
   orderlist:any;
   date:any={};
+  serchresult:boolean=false;
  
   constructor(private myCarOrders:CarOrderService) {
    }
-   search(IdNamber){
-    this.myCarOrders.getUserOrdersByIdNamber(IdNamber);
-    setTimeout(() => {
-      this.orderlist=this.myCarOrders.orderlist;
-      console.log(this.myCarOrders.orderlist)
-      this.model.UserName=this.orderlist[0].UserName
-    },300);
+   search(){
+     if(this.model.IdNamber!=null)
+     {
+       this.serchresult=true
+      this.myCarOrders.getUserOrdersByIdNamber(this.model.IdNamber);
+      setTimeout(() => {
+        this.orderlist=this.myCarOrders.orderlist;
+        this.model.UserName=this.orderlist[0].UserName
+      },1000);
+     }
+    
    }
    getdetels:any={};
+
+
+
   onSubmit(order)
   {
     if( this.model.VehicleNumber==null){
@@ -52,9 +60,8 @@ export class EditOrdersComponent {
  
     if(!this.wrongDateInput&&!this.wrongmindate){
     switch (order){
-      case "Add":this.add();break;
+      case "Add": this.add();break;
       case "Update": this.Update();break;
-      case "Delete":console.log("Delete");break;
       default:break;
     }
     } 
@@ -66,7 +73,7 @@ export class EditOrdersComponent {
     this.model.StartDate=this.date.Start;
     this.model.ReturnDate=this.date.Return;
     this.myCarOrders.sendNewOrder(this.model);
-
+    this.search();
    }
    
    if( this.model.VehicleNumber==0){
@@ -77,18 +84,22 @@ export class EditOrdersComponent {
  Update(){
   if( this.model.VehicleNumber!=0){
     this.wrongCarinput=false;
+    this.model.oldStart=this.model.StartDate;
     this.model.StartDate=this.date.Start;
     this.model.ReturnDate=this.date.Return;
-    this.myCarOrders.updateanorder(this.model);
+    this.myCarOrders.updateOrder(this.model);
    }
    
    if( this.model.VehicleNumber==0){
     this.wrongCarinput=true; 
+    this.search();
    }
 
  }
-
+fordelete:any;
     setItem(str){
+     
+      this.fordelete=str;
       this.model.StartDate=str.StartDate;
       this.model.ReturnDate=str.ReturnDate;
       this.model.VehicleNumber=str.VehicleNumber;
@@ -97,6 +108,17 @@ export class EditOrdersComponent {
       this.orderlist={a:""};
       this.orderlist=[this.model];
      
+  }
+  deleteOrder(){
+if(this.fordelete!=undefined){
+  this.myCarOrders.deleteOrder(this.fordelete);
+  setTimeout(() => {
+    this.fordelete={};
+    this.search();
+  }, 200);
+}
+
+
   }
 
 }

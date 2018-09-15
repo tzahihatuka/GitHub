@@ -14,7 +14,7 @@
                                       
                                       <div class="col-md-6">
                                           <div class="form-group ">
-                                              <button  class="btn btn-lg btn-primary btn-block" (click)="search(model.IdNamber)">Show Orders</button>
+                                              <button  class="btn btn-lg btn-primary btn-block" (click)="search()">Show Orders</button>
                                               </div>
                                       </div>
                                     </div>
@@ -84,25 +84,27 @@
                                               </div>
                                             </div>
   
-                  <div class="col-md-2">
+                  <div class="col-md-2" *ngIf="serchresult" >
                         <div class="form-group ">
                             <button  [disabled]="!f.valid"  (click)="onSubmit('Add')" class="btn btn-lg btn-primary btn-block">Add</button>
                             </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3"*ngIf="serchresult">
                         <div class="form-group ">
-                            <button  [disabled]="!f.valid"  (click)="onSubmit('Update')" class="btn btn-lg btn-primary btn-block">Delete</button>
+                            <button  [disabled]="!f.valid"  (click)="onSubmit('Update')" class="btn btn-lg btn-primary btn-block">Update</button>
                             </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3"*ngIf="serchresult">
                         <div class="form-group ">
-                            <button  class="btn btn-lg btn-primary btn-block" [disabled]="!f.valid"  (click)="onSubmit('Delete')">Update</button>
+                            <button  class="btn btn-lg btn-primary btn-block"  (click)="deleteOrder()">Delete</button>
                             </div>
                     </div>
                     <label *ngIf="wrongCarinput" class="alert alert-danger">please enter a valid car number</label>
                          <label *ngIf="wrongDateInput" class="alert alert-danger">the start date can't be before the end date</label>
                                     <label *ngIf="wrongmindate" class="alert alert-danger">You can not select a date before the current date</label>
                                     <label *ngIf="myCarOrders.newOrder" class="alert alert-danger">this car is not Available in this date please select another car</label>
+                                    <label *ngIf="myCarOrders.deletedSuccessfully" class="alert alert-danger">this car are not deleted</label>
+                                   
                   </div>
                 </form>
             </div>

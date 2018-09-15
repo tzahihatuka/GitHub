@@ -26,9 +26,9 @@ namespace _03_UIL.Models
         [Required]
         public int VehicleNumber { get; set; }
         [Required]
-        public decimal DailyCost { get; set; }
+        public decimal? DailyCost { get; set; }
         [Required]
-        public decimal CostDayOverdue { get; set; }
+        public decimal? CostDayOverdue { get; set; }
         [Required]
         public string VehiclePic { get; set; }
         public DateTime? StartDate { get; set; }

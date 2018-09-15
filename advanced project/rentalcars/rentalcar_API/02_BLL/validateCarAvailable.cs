@@ -8,23 +8,28 @@ namespace _02_BLL
 {
     internal class validateCarAvailable
     {
+       
         internal static bool IsAvailable(BOLOrder order)
         {
-            using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+            try
             {
-                bool a = true;
-               List<Order>  dbOrder = ef.Orders.Where(u => u.VehiclesID == order.VehiclesID && u.ActualReturnDate == null).ToList();
-                foreach (var item in dbOrder)
+                using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    if (item.ReturnDate >= order.StartDate && item.StartDate >= order.StartDate|| item.ReturnDate > order.StartDate && item.ReturnDate < order.StartDate)
+                    bool a = true;
+                    List<Order> dbOrder = ef.Orders.Where(u => u.VehiclesID == order.VehiclesID && u.ActualReturnDate == null).ToList();
+                    foreach (var item in dbOrder)
                     {
-                        a= false;
+                        if (item.ReturnDate >= order.StartDate && item.StartDate <= order.StartDate)
+                        {
+                            a = false;
+                        }
                     }
+                    return a;
                 }
-                return a;
             }
-
-
+            catch { return false; }
         }
     }
+
 }
+

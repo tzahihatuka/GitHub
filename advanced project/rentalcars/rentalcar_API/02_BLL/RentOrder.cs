@@ -76,15 +76,44 @@ namespace _02_BLL
 
         public static BOLOrder UpDataTo_db(BOLOrder retrievedOrder)
         {
-            using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+            try
             {
-                Order getOrder = ef.Orders.FirstOrDefault(u => u.UserID == retrievedOrder.UserID&&u.StartDate==retrievedOrder.StartDate);
-                DateTime getCorrentDate =DateTime.Today;
-                getOrder.ActualReturnDate = getCorrentDate.Date;
-                ef.SaveChanges();
-                retrievedOrder.ActualReturnDate = getOrder.ActualReturnDate;
-                return retrievedOrder;
+                using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+                {
+                    Order getOrder = ef.Orders.FirstOrDefault(u => u.UserID == retrievedOrder.UserID && u.StartDate == retrievedOrder.StartDate && u.VehiclesID == retrievedOrder.VehiclesID);
+                    DateTime getCorrentDate = DateTime.Today;
+                    getOrder.ActualReturnDate = getCorrentDate.Date;
+                    ef.SaveChanges();
+                    retrievedOrder.ActualReturnDate = getOrder.ActualReturnDate;
+                    return retrievedOrder;
+                }
             }
+            catch { return null; }
+
+
+        }
+
+      
+
+        public static BOLOrder SaveUpDataTo_db(BOLOrder bOLOrder, DateTime? startDate)
+        {
+            if (bOLOrder.StartDate >= DateTime.Now)
+            {
+                if (validateCarAvailable.IsAvailable(bOLOrder))
+                {
+                    using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+                    {
+                        Order getorder = ef.Orders.FirstOrDefault(u => u.UserID == bOLOrder.UserID && u.StartDate == startDate && u.VehiclesID == bOLOrder.VehiclesID);
+                        getorder.StartDate = bOLOrder.StartDate;
+                        getorder.ReturnDate = bOLOrder.ReturnDate;
+                        getorder.ActualReturnDate = bOLOrder.ActualReturnDate;
+                        ef.SaveChanges();
+                        return bOLOrder;
+                    }
+                }
+                return null;
+            }
+            return null;
         }
 
         public static List<BOLOrder> GetUsersOrdesrByidNumber(string idNumber)
@@ -94,8 +123,8 @@ namespace _02_BLL
             {
                 UserTable user;
                 BOLUserInfo a = new BOLUserInfo();
-             //   a.UserIdNumber = idNumber;
-             //   idNumber = a.UserIdNumber;
+                a.UserIdNumber = idNumber;
+                idNumber = a.UserIdNumber;
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
 
@@ -148,12 +177,13 @@ namespace _02_BLL
                             }
                         }
                     }
+                    return orderedCars;
                 }
             }
-            catch { }
+            catch { return null; }
 
 
-            return orderedCars;
+            
         }
 
 
@@ -190,7 +220,7 @@ namespace _02_BLL
                 }
 
             }
-            catch (Exception EX)
+            catch
             {
                 return false;
             }
@@ -234,21 +264,22 @@ namespace _02_BLL
                 }
 
             }
-            catch (Exception EX)
+            catch
             {
             }
         }
 
 
-        public static void deleteFrom_db(BOLOrder retrievedOrder)
+        public static void deleteFrom_db(int userID, int vehiclesID, DateTime startDate)
         {
+      
             try
             {
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    Order order = ef.Orders.FirstOrDefault(u => u.ReturnDate == retrievedOrder.ReturnDate &&
-              u.StartDate == retrievedOrder.StartDate &&
-              u.UserID == retrievedOrder.UserID && u.VehiclesID == retrievedOrder.VehiclesID);
+                    Order order = ef.Orders.FirstOrDefault(u => 
+              u.StartDate == startDate &&
+              u.UserID == userID && u.VehiclesID == vehiclesID);
 
                     if (order != null)
                     {
@@ -262,7 +293,7 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch
             {
             }
         }

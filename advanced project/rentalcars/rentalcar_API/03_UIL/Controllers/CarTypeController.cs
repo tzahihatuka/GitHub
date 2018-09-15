@@ -22,6 +22,13 @@ namespace _03_UIL.Controllers
             List<BOLCarType> value = RentTypeOfCars.GetCarsTypeFrom_db(id);
             return Ok(value);
         }
+        [Route("api/GetsearchType")]
+        [HttpGet]
+        public IHttpActionResult GetsearchType(string name,string model,string gear)
+        {
+           BOLCarType value = RentTypeOfCars.GetCarsTypeFrom_db(name, model, gear);
+            return Ok(value);
+        }
 
         [Route("api/TypeName")]
         [HttpGet]

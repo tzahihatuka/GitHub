@@ -34,6 +34,8 @@ import { EditOrdersComponent } from './edit-orders/edit-orders.component';
 import { EditingalistofvehiclesComponent } from './editingalistofvehicles/editingalistofvehicles.component';
 import { EditingusersComponent } from './editingusers/editingusers.component';
 import { EditingvehicletypesComponent } from './editingvehicletypes/editingvehicletypes.component';
+import { branchservice } from './shared/services/branch-Service';
+import { UploadImageService } from './shared/services/upload-image.service';
 
 
 const appRoutes: Routes = [
@@ -109,7 +111,8 @@ const appRoutes: Routes = [
   providers: [getLoginService,
     setNewUserService,carsService,
     filterCarsService,carsModel,
-    CarOrderService,
+    CarOrderService,branchservice,
+    UploadImageService
   ],
   bootstrap: [AppComponent]
 })

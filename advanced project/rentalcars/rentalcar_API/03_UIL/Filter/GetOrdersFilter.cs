@@ -41,25 +41,30 @@ namespace _03_UIL.Filter
 
         public static List<OrderModel> GetUserOrdesrByUserName(string userName)
         {
-            List<OrderModel> orderList = new List<OrderModel>();
-            List<BOLOrder> orders = RentOrder.GetUsersOrdesrByUserName(userName);
-            foreach (var item in orders)
+            try
             {
-
-                orderList.Add(new OrderModel
+                List<OrderModel> orderList = new List<OrderModel>();
+                List<BOLOrder> orders = RentOrder.GetUsersOrdesrByUserName(userName);
+                foreach (var item in orders)
                 {
 
-                    StartDate = item.StartDate,
-                    ReturnDate = item.ReturnDate,
-                    UserName = userName,
-                    VehicleNumber = RentCarsInVehicleInventory.GetVehicleNumber(item.VehiclesID),
-                    ActualReturnDate = item.ActualReturnDate
-                });
+                    orderList.Add(new OrderModel
+                    {
+
+                        StartDate = item.StartDate,
+                        ReturnDate = item.ReturnDate,
+                        UserName = userName,
+                        VehicleNumber = RentCarsInVehicleInventory.GetVehicleNumber(item.VehiclesID),
+                        ActualReturnDate = item.ActualReturnDate
+                    });
+                }
+                return orderList;
             }
-            return orderList;
+            catch { return null; }
         }
         public static List<OrderModel> GetUserOrdesrByidNumber(string idNumber)
         {
+            try {
             List<OrderModel> orderList = new List<OrderModel>();
             List<BOLOrder> orders = RentOrder.GetUsersOrdesrByidNumber(idNumber);
             foreach (var item in orders)
@@ -79,6 +84,31 @@ namespace _03_UIL.Filter
                 }
             }
             return orderList;
+            }
+            catch { return null; }
+        }
+
+        internal static BOLOrder updateOrder(OrderModel order)
+        {
+            try
+            {
+                return RentOrder.SaveUpDataTo_db(RetrieveOrder(order), order.oldStart);
+            }
+            catch { return null; }
+        }
+
+        internal static BOLOrder RetrieveOrder(string userName, int carNumber, DateTime start)
+        {
+            try
+            {
+                BOLOrder newOrder = new BOLOrder();
+
+                newOrder.StartDate = start;
+                newOrder.UserID = RentUser.GetUserid(userName);
+                newOrder.VehiclesID = RentCarsInVehicleInventory.GetVehicleid(carNumber);
+                    return newOrder;
+            }
+            catch { return null; }
         }
 
         public static OrderModel PostOrders(OrderModel Order)
@@ -103,31 +133,39 @@ namespace _03_UIL.Filter
 
         public static BOLOrder RetrieveOrder(OrderModel orderModel)
         {
-            BOLOrder newOrder = new BOLOrder();
+            try
+            {
+                BOLOrder newOrder = new BOLOrder();
 
-            newOrder.StartDate = orderModel.StartDate;
-            newOrder.ReturnDate = orderModel.ReturnDate;
-            newOrder.UserID = RentUser.GetUserid(orderModel.UserName);
-            newOrder.VehiclesID = RentCarsInVehicleInventory.GetVehicleid(orderModel.VehicleNumber);
-            newOrder.ActualReturnDate = orderModel.ActualReturnDate;
+                newOrder.StartDate = orderModel.StartDate;
+                newOrder.ReturnDate = orderModel.ReturnDate;
+                newOrder.UserID = RentUser.GetUserid(orderModel.UserName);
+                newOrder.VehiclesID = RentCarsInVehicleInventory.GetVehicleid(orderModel.VehicleNumber);
+                newOrder.ActualReturnDate = orderModel.ActualReturnDate;
 
-            return newOrder;
+                return newOrder;
+            }
+            catch { return null; }
         }
         public static List<BOLOrder> RetrievelistOrder(List<OrderModel> orderModel)
         {
-            List<BOLOrder> newOrder = new List<BOLOrder>();
-            foreach (var item in orderModel)
+            try
             {
-                newOrder.Add(new BOLOrder
+                List<BOLOrder> newOrder = new List<BOLOrder>();
+                foreach (var item in orderModel)
                 {
-                    StartDate = item.StartDate,
-                    ReturnDate = item.ReturnDate,
-                    UserID = RentUser.GetUserid(item.UserName),
-                    VehiclesID = RentCarsInVehicleInventory.GetVehicleid(item.VehicleNumber),
-                    ActualReturnDate = item.ActualReturnDate
-                });
+                    newOrder.Add(new BOLOrder
+                    {
+                        StartDate = item.StartDate,
+                        ReturnDate = item.ReturnDate,
+                        UserID = RentUser.GetUserid(item.UserName),
+                        VehiclesID = RentCarsInVehicleInventory.GetVehicleid(item.VehicleNumber),
+                        ActualReturnDate = item.ActualReturnDate
+                    });
+                }
+                return newOrder;
             }
-            return newOrder;
+            catch { return null; }
         }
     }
 }

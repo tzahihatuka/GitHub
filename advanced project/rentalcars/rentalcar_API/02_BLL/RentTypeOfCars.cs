@@ -41,6 +41,32 @@ namespace _02_BLL
             }
 
         }
+
+        public static BOLCarType GetCarsTypeFrom_db(string name, string model, string gear)
+        {
+            try
+            {
+                using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+                {
+                    CarsType typeModel = ef.CarsTypes.FirstOrDefault(u => u.ManufacturerName == name&&u.Model==model&&u.Gear==gear);
+                    BOLCarType a = new BOLCarType
+                    {
+                        ManufacturerName = typeModel.ManufacturerName,
+                        Model = typeModel.Model,
+                        DailyCost = typeModel.DailyCost,
+                        CostDayOverdue = typeModel.CostDayOverdue,
+                        ManufactureYear = typeModel.ManufactureYear,
+                        Gear = typeModel.Gear
+                    };
+                    return a;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public static List<string> GetTypeModel(string TypeName)
         {
             try

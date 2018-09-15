@@ -16,8 +16,7 @@ namespace _03_UIL.Controllers
     {
         [HttpPost]
         [Route("api/UploadImage")]
-        [AuthenticationFilter]
-        [Authorize(Roles = "admin,worker")]
+      
         public IHttpActionResult UploadImage()
         {
             string imageName = null;

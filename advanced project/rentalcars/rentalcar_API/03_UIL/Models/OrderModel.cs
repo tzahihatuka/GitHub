@@ -17,5 +17,6 @@ namespace _03_UIL.Models
         [Required]
         public int VehicleNumber { get; set; }
         public DateTime? ActualReturnDate { get; set; }
+        public DateTime? oldStart { get; set; }
     }
 }

@@ -1,3 +1,98 @@
-<p>
-  editingvehicletypes works!
-</p>
+
+
+<section>
+    <div class="container">
+             
+                        
+                <div class="row">
+                  
+             
+                <div class="col-md-3">
+                      <div class="form-group ">
+                            <select id="inputState"[(ngModel)]="Company"  class="form-control" (ngModelChange)="saverange()"><option selected [value]="car">Company</option>
+                              <option *ngFor="let car of carGallery.a">{{car}}</option>
+                            </select>
+                          </div>
+                  </div>
+              
+                
+                  <div class="col-md-3">
+                          <div class="form-group ">
+                                <select id="inputState" class="form-control"[(ngModel)]="model.Model" ><option selected [value]="Model">Model</option>
+                                  <option *ngFor="let Model of TypsModel.a">{{Model}}</option>
+                                </select>
+                              </div>
+                      </div>
+
+
+                <div class="col-md-3">
+                      <div class="form-group ">
+                            <select id="inputState" class="form-control" [(ngModel)]="model.Gear"><option selected [value]="Gear">Gear</option>
+                              <option *ngFor="let Gear of TypsGetGear.a">{{Gear}}</option>
+                            </select>
+                          </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group ">
+                          <input type="date" class="form-control"  placeholder="year" name="newcaryear"[(ngModel)]="newCarType.ManufactureYear" #newcaryear="ngModel" />
+                          </div>
+                  </div>
+              
+                  <div class="col-md-3">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"    placeholder="new Company" name="newCompany"[(ngModel)]="newCarType.newCompany" #newCompany="ngModel"/>
+                        </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"    placeholder="new Model" name="newModel"[(ngModel)]="newCarType.newModel" #newModel="ngModel"/>
+                        </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"    placeholder="Gear" name="Gear"[(ngModel)]="newCarType.Gear" #newGear="ngModel"/>
+                        </div>
+                </div>
+              
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"    placeholder="Cost Day Overdue" name="CostDayOverdue"[(ngModel)]="model.CostDayOverdue" #CostDayOverdue="ngModel"/>
+                        </div>
+                </div>
+           
+                <div class="col-md-3">
+                    <div class="form-group ">
+                        <input type="text" class="form-control"    placeholder="Daily Cost" name="DailyCost"[(ngModel)]="model.DailyCost" #DailyCost="ngModel"/>
+                        </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <button  class="btn btn-lg btn-primary btn-block" (click)="search()">search</button>
+                        </div>
+                </div>
+                               
+
+  
+                  <div class="col-md-2" *ngIf="serchresult" >
+                        <div class="form-group ">
+                            <button  [disabled]="!f.valid"  (click)="onSubmit('Add')" class="btn btn-lg btn-primary btn-block">Add</button>
+                            </div>
+                    </div>
+                    <div class="col-md-3"*ngIf="serchresult">
+                        <div class="form-group ">
+                            <button  [disabled]="!f.valid"  (click)="onSubmit('Update')" class="btn btn-lg btn-primary btn-block">Update</button>
+                            </div>
+                    </div>
+                    <div class="col-md-3"*ngIf="serchresult">
+                        <div class="form-group ">
+                            <button  class="btn btn-lg btn-primary btn-block"  (click)="deleteOrder()">Delete</button>
+                            </div>
+                    </div>
+                 
+                                   
+                  </div>
+              
+            </div>
+          
+</section>

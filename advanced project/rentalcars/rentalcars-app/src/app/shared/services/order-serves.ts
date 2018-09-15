@@ -14,7 +14,8 @@ export class CarOrderService {
     orderselectedCost:number;
     isTheselectedOrderAnded:any;
     gutOrder:boolean=false;
-    username:string=localStorage.getItem("username")
+    deletedSuccessfully:boolean=false;
+    username:string=localStorage.getItem("username");
     constructor(private myHttpClient: HttpClient) {}
 
     getAllOrders(idNumber:number){
@@ -100,6 +101,25 @@ inBetween(date1, date2 ) {
          
       }
 
+      updateOrder(orderUdate){
+        let apiUrl:string=`http://localhost:55860/api/Order`;
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/json' }).set('Authorization', localStorage.getItem("username")+" "+localStorage.getItem("password"));
+      let options = { headers: headers };
+           this.myHttpClient.put<any>(apiUrl, orderUdate, options)
+          .subscribe(
+            res => {
+              if(res!=null)
+              this.newOrder=false;
+              else{this.newOrder=true;}
+              this.cost.a=res;
+            },
+            err => {
+              this.newOrder=true;
+            }
+          );
+      }
+
       updateanorder(returnedCar:carOrder){
         let apiUrl:string=`http://localhost:55860/api/returnCar`;
         let headers = new HttpHeaders({
@@ -114,6 +134,21 @@ inBetween(date1, date2 ) {
              
             }
           );
-        
       }
+
+      deleteOrder(deleteOrder:any){
+        let apiUrl:string=`http://localhost:55860/api/Order?username=${deleteOrder.UserName}&&carNumber=${deleteOrder.VehicleNumber}&&start=${deleteOrder.StartDate}`;
+        let headers = new HttpHeaders({
+          'Content-Type': 'application/json' }).set('Authorization', localStorage.getItem("username")+" "+localStorage.getItem("password"));
+      let options = { headers: headers };
+      this.myHttpClient.delete(apiUrl,options)
+      .subscribe(
+        res => {
+          this.cost.a=res;
+          this.deletedSuccessfully=false;
+        },
+        err => {
+          this.deletedSuccessfully=true;
+        }
+      );}
 }

@@ -11,11 +11,15 @@ import { carOrder } from '../shared/models/carOrder-model';
 export class CarPriceComponent  {
   carGallery:any={a:""};
   carList:any={a:""};
-  carType:any={a:0}
+  carType:any={a:0};
+  isRagistared:boolean=false;
   carNotAvailable:boolean=false;
   constructor(private myCarGallery:filterCarsService,private myCarOrderType:CarOrderService) {
     this.carGallery=JSON.parse(localStorage.getItem("selectedCar"));
     this.carList=this.myCarGallery.carInfo;
+    if (localStorage.length > 1) {
+      this.isRagistared=true;
+    }
    }
    carOrder:boolean=false;
    model: any = {};
@@ -36,8 +40,6 @@ showedPeice:boolean=true;
 getyear:boolean=false;
     onSubmit()
 {
-  
- // this.getyear=true;
  let mindate:Date=new Date();
  let start:Date=new Date(this.model.Start);
  mindate=new Date(mindate.getFullYear(),mindate.getMonth(),mindate.getDate());
@@ -77,6 +79,7 @@ getyear:boolean=false;
     
       let a =localStorage.getItem("username");
       this.carType=this.myCarOrderType.carTyperesult
+      
       for(let i in this.carType){
         if(this.carType[i]==VehicleNumber){
           this.carNotAvailable=true;
@@ -88,6 +91,8 @@ getyear:boolean=false;
         this.orderCar.VehicleNumber=VehicleNumber;
         this.orderCar.UserName=a;
       this.myCarOrderType.sendNewOrder(this.orderCar);
+      window.location.href="/cars";
+
       }
    }
  }

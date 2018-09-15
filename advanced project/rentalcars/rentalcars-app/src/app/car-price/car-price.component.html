@@ -11,7 +11,7 @@
                             <img src={{carGallery.VehiclePic}}/>
                         </div>
                         <div *ngIf="carOrder" class="col-xs-12 col-sm-12 col-md-5">
-                            <label>Do you agre for this pric</label>
+                            <label>click order to order in this price</label>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-6">
                                 <ul>
@@ -24,10 +24,10 @@
                         </div>
                         <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-5">
-                          <div *ngIf="carOrder" ><button class="btn btn-lg btn-primary btn-block"  id="linein" (click)="order(carGallery.VehicleNumber)">Order</button></div>
-                          <div *ngIf="!carOrder" ><button class="btn btn-lg btn-primary btn-block"  id="linein" [disabled]="showedPeice" (click)="moveToOrder()">Order</button></div>
-                            
-                            
+                         
+                          <div *ngIf="!carOrder&&isRagistared" ><button class="btn btn-lg btn-primary btn-block linein"   [disabled]="showedPeice" (click)="moveToOrder()">Order</button></div>
+                          <div> <button *ngIf="!isRagistared" routerLink="//cars/signup" class="btn btn-lg btn-primary btn-block linein">Sign up</button></div>
+                          <div *ngIf="carOrder &&isRagistared" ><button class="btn btn-lg btn-primary btn-block linein"   (click)="order(carGallery.VehicleNumber)">Order</button></div>
                             <label *ngIf="carNotAvailable" class="alert alert-danger">This car is not available on these dates</label>
                             <button  class="btn btn-lg btn-primary btn-block" routerLink="/cars" (click)="BackToGallery()">Back to Gallery</button>
                             </div>
