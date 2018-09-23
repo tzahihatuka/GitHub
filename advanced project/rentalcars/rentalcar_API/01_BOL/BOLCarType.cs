@@ -23,7 +23,7 @@ namespace _01_BOL
         public decimal CostDayOverdue
         {
             get { return DailyCost + (20 * DailyCost / 100); }
-            set { myVar = value; }
+            set { myVar = value + (20 * DailyCost / 100); }
         }
         [Required]
         public DateTime ManufactureYear { get; set; }

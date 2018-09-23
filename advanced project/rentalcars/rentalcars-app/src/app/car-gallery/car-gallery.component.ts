@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { carsService } from '../shared/services/cars-serves';
+import { carsService } from '../shared/services/cars-Service';
 import { carModel } from '../shared/models/car-model';
 import { forEach } from '@angular/router/src/utils/collection';
-import { filterCarsService } from '../shared/services/filterCar-Serves';
+import { filterCarsService } from '../shared/services/filterCar-Service';
 
 @Component({
   selector: 'car-gallery',

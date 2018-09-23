@@ -14,7 +14,9 @@ namespace _02_BLL
             {
                 CarsType carTipe = ef.CarsTypes.FirstOrDefault(u => u.ManufacturerName == carType.ManufacturerName &&
             u.Model == carType.Model &&
-            u.ManufactureYear == carType.ManufactureYear && u.Gear == carType.Gear);
+            u.ManufactureYear == carType.ManufactureYear && u.Gear == carType.Gear&&
+            u.DailyCost==carType.DailyCost);
+                
                 if (carTipe != null)
                 {
                     return carTipe;

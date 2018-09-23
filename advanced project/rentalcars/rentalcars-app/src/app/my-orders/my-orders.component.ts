@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarOrderService } from '../shared/services/order-serves';
-import { carsService } from '../shared/services/cars-serves';
+import { CarOrderService } from '../shared/services/order-Service';
+import { carsService } from '../shared/services/cars-Service';
 import { carOrder } from '../shared/models/carOrder-model';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { carsModel } from '../shared/services/car-model-Serves';
-import { carsService } from '../shared/services/cars-serves';
+import { carsModel } from '../shared/services/car-model-Service';
+import { carsService } from '../shared/services/cars-Service';
 import { branchservice } from '../shared/services/branch-Service';
 import { UploadImageService } from '../shared/services/upload-image.service';
 

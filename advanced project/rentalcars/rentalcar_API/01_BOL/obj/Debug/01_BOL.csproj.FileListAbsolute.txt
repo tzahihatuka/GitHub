@@ -3,3 +3,8 @@ C:\Users\tzahi\Documents\visual studio 2017\Projects\rentalcar_API\01_BOL\bin\De
 C:\Users\tzahi\Documents\visual studio 2017\Projects\rentalcar_API\01_BOL\obj\Debug\01_BOL.dll
 C:\Users\tzahi\Documents\visual studio 2017\Projects\rentalcar_API\01_BOL\obj\Debug\01_BOL.pdb
 C:\Users\tzahi\documents\visual studio 2017\Projects\rentalcar_API\01_BOL\obj\Debug\01_BOL.csprojResolveAssemblyReference.cache
+D:\GitHub\advanced project\rentalcars\rentalcar_API\01_BOL\bin\Debug\01_BOL.dll
+D:\GitHub\advanced project\rentalcars\rentalcar_API\01_BOL\bin\Debug\01_BOL.pdb
+D:\GitHub\advanced project\rentalcars\rentalcar_API\01_BOL\obj\Debug\01_BOL.csprojResolveAssemblyReference.cache
+D:\GitHub\advanced project\rentalcars\rentalcar_API\01_BOL\obj\Debug\01_BOL.dll
+D:\GitHub\advanced project\rentalcars\rentalcar_API\01_BOL\obj\Debug\01_BOL.pdb

@@ -13,16 +13,15 @@ export class setNewUserService {
     }
     
     signUp(userInfo:signUpModel) {
-      console.log(userInfo.BirthDay)
       let headers = new HttpHeaders({
         'Content-Type': 'application/json' });
     let options = { headers: headers };
-        console.log(userInfo);
        let apiUrl:string=`http://localhost:55860/api/User`;
       this.myHttpClient.post(apiUrl, userInfo,options,)
         .subscribe(
           res => {
             this.saveToLocatStorage(userInfo.UserName, userInfo.Password);
+            location.replace("/Home");
           },
           err => {
             this.myLogin.a.isRagistared=false;

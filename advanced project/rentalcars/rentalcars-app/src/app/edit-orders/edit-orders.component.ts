@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { carOrder } from '../shared/models/carOrder-model';
-import { CarOrderService } from '../shared/services/order-serves';
+import { CarOrderService } from '../shared/services/order-Service';
 
 @Component({
   selector: 'edit-orders',

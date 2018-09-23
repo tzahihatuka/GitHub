@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { carOrder } from "../models/carOrder-model";
-import { Data } from "../../../../node_modules/@angular/router";
+import { Data } from "@angular/router";
 
 //מאפשר לשירות הנוכחי להשתמש בתוכו בשירותים אחרים
 @Injectable()

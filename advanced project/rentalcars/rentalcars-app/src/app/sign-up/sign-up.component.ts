@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 import { signUpModel } from '../shared/models/sign-up-model';
-import { setNewUserService } from '../shared/services/sign-up-server';
+import { setNewUserService } from '../shared/services/sign-up-Service';
 
 @Component({
   selector: 'sign-up',

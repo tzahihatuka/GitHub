@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { carsService } from '../shared/services/cars-serves';
-import { carsModel } from '../shared/services/car-model-Serves';
-import { branchservice } from '../shared/services/branch-Service';
-import { UploadImageService } from '../shared/services/upload-image.service';
+import { Component} from '@angular/core';
+import { carsModel } from '../shared/services/car-model-Service';
+
 @Component({
   selector: 'editingvehicletypes',
   templateUrl: './editingvehicletypes.component.html',
@@ -11,27 +9,47 @@ import { UploadImageService } from '../shared/services/upload-image.service';
 export class EditingvehicletypesComponent  {
   model:any={a:""};
   carGallery:any={a:""};
-  TypsModel:any={a:""};
-  TypsGetGear:any={a:""};
-  TypsGetYear:any={a:Date};
-  newCarType:any={a:""};
-  constructor(private myCar:carsService,private myCarModel:carsModel,private myBranchs:branchservice,private imageService: UploadImageService ) {
+  constructor(private myCarModel:carsModel) {
     this.myCarModel.getCarTyps();
     this.carGallery=this.myCarModel.TypeName;
-    this.TypsModel=this.myCarModel.TypsModel;
-this.TypsGetGear=this.myCarModel.TypsGetGear;
-this.TypsGetYear=this.myCarModel.TypsGetYear;
   }
-  Company:string;
-  saverange(){
-    this.myCarModel.getCarTypsModel(this.Company);
-    this.model.ManufacturerName=this.Company;
-    this.model.IsProperForRent=true;
-  }
-
+  TypsModel:any={a:""};
   search(){
-    this.myCarModel.getCarTypsbyNameModelGear(this.model);
+    this.myCarModel.getListCarTypsModel(this.model.ManufacturerName).subscribe((x: any) => {this.TypsModel.a=x});
   }
+  arr:Array<any>=[];
+  setItem(order){
+    this.model.ManufacturerName = order.ManufacturerName,
+    this.model.Model = order.Model,
+    this.model.DailyCost = order.DailyCost,
+    this.model.CostDayOverdue = order.CostDayOverdue,
+    this.model.ManufactureYear = order.ManufactureYear,
+    this.model.Gear = order.Gear;
+    this.TypsModel.a=[order];
+    this.arr.push(order);
+  }
+   
+  Add(){
+  this.myCarModel.addnewType(this.model);
+  setTimeout(() => {
+    this.search()
+  },1000 );
+ }
+ Update(){
+  
+  this.arr.push(this.model)
+  this.myCarModel.UpdatenewType(this.arr);
+  setTimeout(() => {
+    this.search()
+  },1000 );
+ }
+ delete(){
+  this.myCarModel.deleteCarType(this.model);
+  setTimeout(() => {
+    this.search()
+  },1000 );
+ }
+
 
 
 }

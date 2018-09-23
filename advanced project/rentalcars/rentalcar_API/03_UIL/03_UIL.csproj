@@ -99,6 +99,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filter\AddRegister.cs" />
     <Compile Include="Filter\AuthenticationFilter.cs" />
+    <Compile Include="Filter\convertUser.cs" />
     <Compile Include="Filter\GetCarInventoryFilter.cs" />
     <Compile Include="Filter\GetOrdersFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -107,6 +108,7 @@
     <Compile Include="Models\CarInventoryModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

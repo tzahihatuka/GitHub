@@ -114,7 +114,7 @@ namespace _03_UIL.Controllers
         [Authorize(Roles = "admin")]
         public IHttpActionResult Delete(int CarNumber )
         {
-            int a = RentCarsInVehicleInventory.deleteFrom_db(CarNumber);
+            string a = RentCarsInVehicleInventory.deleteFrom_db(CarNumber);
             return Ok(a);
         }
     }

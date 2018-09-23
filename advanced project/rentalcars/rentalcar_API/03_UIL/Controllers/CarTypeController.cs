@@ -22,11 +22,11 @@ namespace _03_UIL.Controllers
             List<BOLCarType> value = RentTypeOfCars.GetCarsTypeFrom_db(id);
             return Ok(value);
         }
-        [Route("api/GetsearchType")]
+        [Route("api/GetTypeByCompanyName")]
         [HttpGet]
-        public IHttpActionResult GetsearchType(string name,string model,string gear)
+        public IHttpActionResult GetTypeByCompanyName(string name)
         {
-           BOLCarType value = RentTypeOfCars.GetCarsTypeFrom_db(name, model, gear);
+          List<BOLCarType>  value = RentTypeOfCars.GetCarsTypeFrom_db(name);
             return Ok(value);
         }
 
@@ -69,7 +69,7 @@ namespace _03_UIL.Controllers
 
         // POST: api/CarType
         [AuthenticationFilter]
-        [Authorize(Roles = "admin,worker")]
+        [Authorize(Roles = "admin")]
         public IHttpActionResult Post([FromBody]BOLCarType newCarType)
         {
             RentTypeOfCars.AddCarTypeTo_db(newCarType);
@@ -88,9 +88,9 @@ namespace _03_UIL.Controllers
         // DELETE: api/CarType/5
         [AuthenticationFilter]
         [Authorize(Roles = "admin")]
-        public IHttpActionResult Delete(BOLCarType carType)
+        public IHttpActionResult Delete(string ManufacturerName , string Model, string Gear, DateTime ManufactureYear, decimal DailyCost, decimal CostDayOverdue)
         {
-            RentTypeOfCars.deleteFrom_db(carType);
+            RentTypeOfCars.deleteFrom_db(ManufacturerName, Model, Gear, ManufactureYear, DailyCost, CostDayOverdue);
             return Ok();
         }
     }

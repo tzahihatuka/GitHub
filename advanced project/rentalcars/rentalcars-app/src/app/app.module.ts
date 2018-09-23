@@ -19,13 +19,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { SelectedCarComponent } from './selected-car/selected-car.component';
 import { getLoginService } from './shared/services/login-servece';
-import { setNewUserService } from './shared/services/sign-up-server';
+import { setNewUserService } from './shared/services/sign-up-Service';
 import { CarGalleryComponent } from './car-gallery/car-gallery.component';
-import { carsService } from './shared/services/cars-serves';
-import { filterCarsService } from './shared/services/filterCar-Serves';
-import { carsModel } from './shared/services/car-model-Serves';
+import { carsService } from './shared/services/cars-Service';
+import { filterCarsService } from './shared/services/filterCar-Service';
+import { carsModel } from './shared/services/car-model-Service';
 import { CarPriceComponent } from './car-price/car-price.component';
-import { CarOrderService } from './shared/services/order-serves';
+import { CarOrderService } from './shared/services/order-Service';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderPreviewComponent } from './order-preview/order-preview.component';
 import { ReturnCarComponent } from './return-car/return-car.component';
@@ -36,6 +36,7 @@ import { EditingusersComponent } from './editingusers/editingusers.component';
 import { EditingvehicletypesComponent } from './editingvehicletypes/editingvehicletypes.component';
 import { branchservice } from './shared/services/branch-Service';
 import { UploadImageService } from './shared/services/upload-image.service';
+import { UserService } from './shared/services/user-Service';
 
 
 const appRoutes: Routes = [
@@ -112,7 +113,8 @@ const appRoutes: Routes = [
     setNewUserService,carsService,
     filterCarsService,carsModel,
     CarOrderService,branchservice,
-    UploadImageService
+    UploadImageService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { getLoginService } from '../shared/services/login-servece';
-import { carsService } from '../shared/services/cars-serves';
-import { filterCarsService } from '../shared/services/filterCar-Serves';
 
 @Component({
   selector: 'header',

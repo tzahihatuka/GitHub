@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { filterCarsService } from '../shared/services/filterCar-Serves';
+import { filterCarsService } from '../shared/services/filterCar-Service';
 
 @Component({
   selector: 'selected-car',

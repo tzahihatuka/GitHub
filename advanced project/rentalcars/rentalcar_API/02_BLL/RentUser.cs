@@ -39,6 +39,40 @@ namespace _02_BLL
 
         }
 
+        public static List<BOLUserInfo> GetAllUsers()
+        {
+            try
+            {
+                using (RentalcarsEntities1 ef = new RentalcarsEntities1())
+                {
+                    List<BOLUserInfo> ListUsersInfo = new List<BOLUserInfo>();
+
+                    List<UserTable> dbUser = ef.UserTables.Select(u => u).ToList();
+                    foreach (var item in dbUser)
+                    {
+                        ListUsersInfo.Add(new BOLUserInfo
+                        {
+
+                            FullUserName = item.FullUserName,
+                            UserIdNumber = item.UserIdNumber,
+                            UserName = item.UserName,
+                            Password = item.Password,
+                            BirthDay = item.BirthDay,
+                            Sex = item.Sex,
+                            UserRole = item.UserRole,
+                            UserPic = item.UserPic,
+                            Email = item.Email,
+                        });
+                    }
+
+                    return ListUsersInfo;
+                }
+            }
+            catch
+            { return null; }
+
+        }
+
         public static string GetUserName(int userID)
         {
             using (RentalcarsEntities1 ef = new RentalcarsEntities1())
@@ -50,32 +84,33 @@ namespace _02_BLL
                 {
                     return dbUser.UserName;
                 }
-                else {
+                else
+                {
                     return null;
                 }
             }
         }
 
-        public static int GetLogin(string userName,string password)
+        public static int GetLogin(string userName, string password)
         {
             using (RentalcarsEntities1 ef = new RentalcarsEntities1())
             {
                 UserTable user = ef.UserTables.FirstOrDefault(u => u.UserName == userName && u.Password == password);
-            int UserRole= user.UserRole;
+                int UserRole = user.UserRole;
                 return UserRole;
             }
-        
+
         }
 
-        public static void AddUserTo_db(BOLUserInfo userInfo)
+        public static string AddUserTo_db(BOLUserInfo userInfo)
         {
             try
             {
-                
+
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    
-                   
+
+
                     ValidateUserInput.CheckUnique(userInfo.UserName, userInfo.UserIdNumber);
 
                     ef.UserTables.Add(new UserTable
@@ -86,57 +121,58 @@ namespace _02_BLL
                         Password = userInfo.Password,
                         BirthDay = userInfo.BirthDay,
                         Sex = userInfo.Sex,
-                        UserRole =0,
+                        UserRole = 0,
                         UserPic = userInfo.UserPic,
                         Email = userInfo.Email
                     });
                     ef.SaveChanges();
+                    return "OK";
                 }
             }
-            catch (Exception EX)
+            catch
             {
-                throw new Exception(EX.ToString());
+                return "Something is wrong with the data";
             }
         }
 
 
 
-        public static void UpDataTo_db(string id, BOLUserInfo userInfo)
+        public static string UpDataTo_db(BOLUserInfo olduserInfo, BOLUserInfo newuserInfo)
         {
             try
             {
-                if (userInfo.UserRole != 0)
+                if (newuserInfo.UserRole != 0)
                 {
-                    ValidateUserInput.CheckRole(userInfo.UserRole);
+                    ValidateUserInput.CheckRole(newuserInfo.UserRole);
                 }
-                ValidateUserInput.IsThisUserexists(id);
 
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    UserTable dbUser = ef.UserTables.FirstOrDefault(u => u.UserIdNumber == id);
-                    
-                        dbUser.FullUserName = userInfo.FullUserName;
-                        dbUser.UserIdNumber = userInfo.UserIdNumber;
-                        dbUser.UserName = userInfo.UserName;
-                        dbUser.Password = userInfo.Password;
-                        dbUser.BirthDay = userInfo.BirthDay;
-                        dbUser.Sex = userInfo.Sex;
-                        dbUser.UserRole = userInfo.UserRole;
-                        dbUser.UserPic = userInfo.UserPic;
-                        dbUser.Email = userInfo.Email;
+                    UserTable dbUser = ef.UserTables.FirstOrDefault(u => u.UserIdNumber == olduserInfo.UserIdNumber);
 
-                        ef.SaveChanges();
-                   
+                    dbUser.FullUserName = newuserInfo.FullUserName;
+                    dbUser.UserIdNumber = newuserInfo.UserIdNumber;
+                    dbUser.UserName = newuserInfo.UserName;
+                    dbUser.Password = newuserInfo.Password;
+                    dbUser.BirthDay = newuserInfo.BirthDay;
+                    dbUser.Sex = newuserInfo.Sex;
+                    dbUser.UserRole = newuserInfo.UserRole;
+                    dbUser.UserPic = newuserInfo.UserPic;
+                    dbUser.Email = newuserInfo.Email;
+
+                    ef.SaveChanges();
+                    return "OK";
+
                 }
             }
-            catch (Exception EX)
+            catch
             {
-                throw new Exception(EX.ToString());
+                return "Something is wrong with the data";
             }
         }
 
 
-        public static void deleteFrom_db(string id)
+        public static string deleteFrom_db(string id)
         {
             try
             {
@@ -145,21 +181,30 @@ namespace _02_BLL
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
                     UserTable dbUser = ef.UserTables.FirstOrDefault(u => u.UserIdNumber == id);
-
-                    ef.UserTables.Remove(ef.UserTables.FirstOrDefault(u => u.UserIdNumber == id));
+                    List<Order> ishaveOrder = ef.Orders.Where(u => u.UserID == dbUser.UserID && u.ActualReturnDate != null).ToList();
+                    if (ishaveOrder.Count == 0)
+                    {
+                        ef.UserTables.Remove(ef.UserTables.FirstOrDefault(u => u.UserIdNumber == id));
                         ef.SaveChanges();
+                        return "OK";
+                    }
+                    else
+                    {
+                        return "This user has an order in his name";
+                    }
+
                 }
             }
-            catch (Exception EX)
+            catch
             {
-                throw new Exception(EX.ToString());
+                return "Something is wrong with the data";
             }
         }
 
         public static int GetUserid(string userName)
         {
             try
-            {      
+            {
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
                     UserTable dbUser = ef.UserTables.FirstOrDefault(u => u.UserName == userName);
@@ -174,9 +219,9 @@ namespace _02_BLL
                     }
                 }
             }
-            catch (Exception EX)
+            catch
             {
-                throw new Exception(EX.ToString());
+                return 0;
             }
         }
 
@@ -201,16 +246,16 @@ namespace _02_BLL
             }
             catch (Exception EX)
             {
-                throw new Exception(EX.ToString());
+                return EX.ToString();
             }
         }
         public static string GetUserNume(string userid)
         {
             try
             {
-              //  BOLUserInfo a = new BOLUserInfo();
-              //  a.UserIdNumber = userid;
-              //  userid = a.UserIdNumber;
+                BOLUserInfo a = new BOLUserInfo();
+                a.UserIdNumber = userid;
+                userid = a.UserIdNumber;
 
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
@@ -228,7 +273,7 @@ namespace _02_BLL
             }
             catch (Exception EX)
             {
-               throw new Exception(EX.ToString());
+                return EX.ToString();
             }
         }
     }

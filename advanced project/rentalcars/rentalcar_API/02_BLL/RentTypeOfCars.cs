@@ -172,7 +172,7 @@ namespace _02_BLL
 
 
 
-        public static void AddCarTypeTo_db(BOLCarType carType)
+        public static string AddCarTypeTo_db(BOLCarType carType)
         {
             try
             {
@@ -181,6 +181,7 @@ namespace _02_BLL
                 {
                     using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                     {
+
                         ef.CarsTypes.Add(new CarsType
                         {
 
@@ -192,6 +193,7 @@ namespace _02_BLL
                             Gear = carType.Gear
                         });
                         ef.SaveChanges();
+                        return "OK";
                     }
                 }
                 else
@@ -199,15 +201,15 @@ namespace _02_BLL
                     throw new InvalidOperationException($"this car type is already exist please change  the values and try again");
                 }
             }
-            catch (Exception EX)
+            catch 
             {
-                throw new Exception(EX.ToString());
+                return "this car type is already exist please change  the values and try again";
             }
         }
 
 
 
-        public static void UpDataCarTypeTo_db(BOLCarType oldCarType, BOLCarType newCarType)
+        public static string UpDataCarTypeTo_db(BOLCarType oldCarType, BOLCarType newCarType)
         {
             CarsType isExist = ValidateCarInput.IsExist(oldCarType);
             try
@@ -216,39 +218,46 @@ namespace _02_BLL
                 {
                     using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                     {
-                        CarsType dbUser = ef.CarsTypes.FirstOrDefault(u => u.CarTypeID == isExist.CarTypeID);
+                        CarsType isTheNewExist = ValidateCarInput.IsExist(newCarType);
+                        if (isTheNewExist == null)
+                        {
+                            CarsType dbUser = ef.CarsTypes.FirstOrDefault(u => u.CarTypeID == isExist.CarTypeID);
 
-                        dbUser.ManufacturerName = newCarType.ManufacturerName;
-                        dbUser.Model = newCarType.Model;
-                        dbUser.DailyCost = newCarType.DailyCost;
-                        dbUser.CostDayOverdue = newCarType.CostDayOverdue;
-                        dbUser.ManufactureYear = newCarType.ManufactureYear;
-                        dbUser.Gear = newCarType.Gear;
+                            dbUser.ManufacturerName = newCarType.ManufacturerName;
+                            dbUser.Model = newCarType.Model;
+                            dbUser.DailyCost = newCarType.DailyCost;
+                            dbUser.ManufactureYear = newCarType.ManufactureYear;
+                            dbUser.Gear = newCarType.Gear;
 
-                        ef.SaveChanges();
+                            ef.SaveChanges();
+                            return "Ok";
+                        }
+                        else
+                        {
+                            return "this car type is already exist please change  the values and try again";
+                        }
                     }
                 }
                 else
                 {
                     throw new InvalidOperationException($"this car type is not exist please change the values and try again");
                 }
-
             }
-            catch (Exception EX)
+            catch 
             {
-                throw new Exception(EX.ToString());
+                return "this car type is not exist please change the values and try again";
             }
         }
 
 
-        public static void deleteFrom_db(BOLCarType oldCarType)
+        public static void deleteFrom_db(string ManufacturerName, string Model, string Gear, DateTime ManufactureYear, decimal DailyCost, decimal CostDayOverdue)
         {
-            CarsType isExist = ValidateCarInput.IsExist(oldCarType);
             try
             {
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-
+                    CarsType isExist = ef.CarsTypes.FirstOrDefault(u => u.ManufacturerName == ManufacturerName && u.ManufactureYear == ManufactureYear && u.Model == Model && u.Gear == Gear &&
+                      u.DailyCost == DailyCost && u.CostDayOverdue == CostDayOverdue);
                     if (isExist != null)
                     {
                         ef.CarsTypes.Remove(isExist);

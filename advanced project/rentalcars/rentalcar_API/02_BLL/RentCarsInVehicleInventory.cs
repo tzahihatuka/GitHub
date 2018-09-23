@@ -203,30 +203,37 @@ namespace _02_BLL
         }
 
 
-        public static int deleteFrom_db(int VehicleNumber)
+        public static string deleteFrom_db(int VehicleNumber)
         {
             try
             {
                 using (RentalcarsEntities1 ef = new RentalcarsEntities1())
                 {
-                    VehicleInventory dbUser = ef.VehicleInventories.FirstOrDefault(u => u.VehicleNumber == VehicleNumber);
-
-                    if (dbUser != null)
+                    VehicleInventory dbvehicle = ef.VehicleInventories.FirstOrDefault(u => u.VehicleNumber == VehicleNumber);
+                   List< Order> isItInOrder = ef.Orders.Where(u => u.VehiclesID == dbvehicle.VehiclesID && u.ActualReturnDate != null).ToList();
+                    if (isItInOrder.Count == 0)
                     {
-                        ef.VehicleInventories.Remove(dbUser);
-                        ef.SaveChanges();
-                        return VehicleNumber;
+                        if (dbvehicle != null)
+                        {
+                            ef.VehicleInventories.Remove(dbvehicle);
+                            ef.SaveChanges();
+                            return "deleted";
+                        }
+                        else
+                        {
+                            throw new InvalidOperationException($"this car type is not exist please change the values and try again");
+
+                        }
                     }
                     else
                     {
-                        throw new InvalidOperationException($"this car type is not exist please change the values and try again");
-
+                        return "this vehicle is in order";
                     }
                 }
             }
-            catch (Exception e)
+            catch 
             {
-                return 0;
+                return "wrong vehicle number";
             }
         }
 

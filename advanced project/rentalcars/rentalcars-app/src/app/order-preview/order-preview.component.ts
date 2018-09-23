@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CarOrderService } from '../shared/services/order-serves';
-import { carsService } from '../shared/services/cars-serves';
+import { CarOrderService } from '../shared/services/order-Service';
+import { carsService } from '../shared/services/cars-Service';
 import { carOrder } from '../shared/models/carOrder-model';
-import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { carModel } from '../shared/models/car-model';
 
 @Component({
